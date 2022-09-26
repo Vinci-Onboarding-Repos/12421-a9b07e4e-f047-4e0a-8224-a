@@ -159,7 +159,7 @@ async function addUserDecision(event) {
     }
 
 
-    const data = document.querySelector("#inputNext");
+    const data = document.querySelector("#" + event.target.id);
     location.href = data.dataset.href;
 }
 
