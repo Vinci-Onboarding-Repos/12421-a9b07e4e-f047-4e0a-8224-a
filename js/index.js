@@ -124,8 +124,6 @@ async function checkUserInput() {
 }
 
 async function addUserDecision(event) {
-    console.log(event.target.id);  // Get ID of Clicked Element
-
     if (window.localStorage.getItem('user') !== null) {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         let merged = { ...userData, ...{ type: event.target.id } };
@@ -145,9 +143,11 @@ async function addUserDecision(event) {
             .then(response => {
                 return response.country;
             })
-        allIds.country = country;
-        allIds.id = 'onboarding-user-' + crypto.randomUUID();
-        window.localStorage.setItem('user', JSON.stringify({ type: event.target.id }));
+        var user = {}
+        user.country = country;
+        user.id = 'onboarding-user-' + crypto.randomUUID();
+        user.type = event.target.id;
+        window.localStorage.setItem('user', JSON.stringify(user));
         let userData = JSON.parse(window.localStorage.getItem('user'));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/adduseronboarding', {
@@ -157,7 +157,7 @@ async function addUserDecision(event) {
             API_KEY: 'VINCI_DEV_6E577'
         });
     }
-    
+
 
     const data = document.querySelector("#inputNext");
     location.href = data.dataset.href;
