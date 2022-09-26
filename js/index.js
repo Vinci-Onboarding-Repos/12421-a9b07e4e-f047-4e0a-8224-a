@@ -76,6 +76,7 @@ const storeUserWallet = (selectedWallet) => {
 }
 
 async function checkUserInput() {
+    console.log("ola")
     var allElements = document.querySelectorAll('*[id]');
     var allIds = {};
     for (var i = 0, n = allElements.length; i < n; ++i) {
@@ -87,6 +88,7 @@ async function checkUserInput() {
         }
     }
 
+    console.log("ola2")
     if (window.localStorage.getItem('user') !== null) {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         let merged = { ...userData, ...allIds };
@@ -119,6 +121,7 @@ async function checkUserInput() {
         });
     }
     
+    console.log("ola3")
     const data = document.querySelector("#inputNext");
     location.href = data.dataset.href;
 }
