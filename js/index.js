@@ -1,4 +1,3 @@
-
 const VINCI_ENV = sessionStorage.getItem('vinciEnv');
 const BASE_URL = VINCI_ENV === 'dev' ? 'http://localhost:5001/vinci-dev-6e577/us-central1/api/public' :
     'https://us-central1-vinci-dev-6e577.cloudfunctions.net/api/public';
@@ -46,7 +45,7 @@ const storeUserWallet = (selectedWallet) => {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         console.log(userData)
         userData.wallet = selectedWallet;
-        window.localStorage.setItem('user', userData);
+        window.localStorage.setItem('user', JSON.stringify(userData));
         userData = JSON.parse(window.localStorage.getItem('user'));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/updateuseronboarding', {
@@ -65,7 +64,7 @@ const storeUserWallet = (selectedWallet) => {
             })
         const userData = { wallet: selectedWallet, id: 'onboarding-user-' + crypto.randomUUID(), country: country };
         console.log(userData)
-        window.localStorage.setItem('user', userData);
+        window.localStorage.setItem('user', JSON.stringify(userData));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/adduseronboarding', {
             projectId: pathArray[1],
@@ -91,7 +90,7 @@ async function checkUserInput() {
     if (window.localStorage.getItem('user') !== null) {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         let merged = { ...userData, ...allIds };
-        window.localStorage.setItem('user',merged);
+        window.localStorage.setItem('user', JSON.stringify(merged));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/updateuseronboarding', {
             projectId: pathArray[1],
@@ -109,7 +108,7 @@ async function checkUserInput() {
             })
         allIds.country = country;
         allIds.id = 'onboarding-user-' + crypto.randomUUID();
-        window.localStorage.setItem('user', allIds);
+        window.localStorage.setItem('user', JSON.stringify(allIds));
         let userData = JSON.parse(window.localStorage.getItem('user'));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/adduseronboarding', {
