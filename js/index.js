@@ -46,7 +46,7 @@ const storeUserWallet = (selectedWallet) => {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         console.log(userData)
         userData.wallet = selectedWallet;
-        window.localStorage.setItem('user', JSON.stringify(userData));
+        window.localStorage.setItem('user', userData);
         userData = JSON.parse(window.localStorage.getItem('user'));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/updateuseronboarding', {
@@ -65,7 +65,7 @@ const storeUserWallet = (selectedWallet) => {
             })
         const userData = { wallet: selectedWallet, id: 'onboarding-user-' + crypto.randomUUID(), country: country };
         console.log(userData)
-        window.localStorage.setItem('user', JSON.stringify(userData));
+        window.localStorage.setItem('user', userData);
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/adduseronboarding', {
             projectId: pathArray[1],
@@ -91,7 +91,7 @@ async function checkUserInput() {
     if (window.localStorage.getItem('user') !== null) {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         let merged = { ...userData, ...allIds };
-        window.localStorage.setItem('user', JSON.stringify(merged));
+        window.localStorage.setItem('user',merged);
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/updateuseronboarding', {
             projectId: pathArray[1],
@@ -109,7 +109,7 @@ async function checkUserInput() {
             })
         allIds.country = country;
         allIds.id = 'onboarding-user-' + crypto.randomUUID();
-        window.localStorage.setItem('user', JSON.stringify(allIds));
+        window.localStorage.setItem('user', allIds);
         let userData = JSON.parse(window.localStorage.getItem('user'));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/adduseronboarding', {
