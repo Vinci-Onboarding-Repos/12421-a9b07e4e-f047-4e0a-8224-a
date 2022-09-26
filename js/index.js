@@ -65,7 +65,7 @@ const storeUserWallet = (selectedWallet) => {
             })
         const userData = { wallet: selectedWallet, id: 'onboarding-user-' + crypto.randomUUID(), country: country };
         console.log(userData)
-        window.localStorage.setItem('user', userData);
+        window.localStorage.setItem('user', JSON.stringify(userData));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/adduseronboarding', {
             projectId: pathArray[1],
