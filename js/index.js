@@ -45,7 +45,7 @@ const storeUserWallet = (selectedWallet) => {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         console.log(userData)
         userData.wallet = selectedWallet;
-        window.localStorage.setItem('user', userData);
+        window.localStorage.setItem('user', JSON.stringify(userData));
         userData = JSON.parse(window.localStorage.getItem('user'));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/updateuseronboarding', {
@@ -64,7 +64,7 @@ const storeUserWallet = (selectedWallet) => {
             })
         const userData = { wallet: selectedWallet, id: 'onboarding-user-' + crypto.randomUUID(), country: country };
         console.log(userData)
-        window.localStorage.setItem('user', userData);
+        window.localStorage.setItem('user', JSON.stringify(userData));
         var pathArray = window.location.pathname.split('/');
         axios.post(BASE_URL + '/adduseronboarding', {
             projectId: pathArray[1],
