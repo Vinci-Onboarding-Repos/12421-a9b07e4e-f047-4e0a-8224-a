@@ -7,20 +7,23 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   <script> 
     window.addEventListener('load', async () => {
-        init(); 
-        window.addEventListener('load', async () => {
-            init();
-        if(document.querySelector("#eth") !== null){
-            document.querySelector("#eth").addEventListener("click", onConnect);
+      const ignore = ["WEB3_CONNECT_MODAL_ID", "template", "inputNext", "eth", "sol", "error-text"];
+      var allElements = document.querySelectorAll('*[id]');
+      var allIds = {};
+      for (var i = 0, n = allElements.length; i < n; ++i) {
+        var el = allElements[i];
+        if (!ignore.includes(el.id)) {
+          console.log(el.tagName)
+          if (el.id && el.tagName === "BUTTON") {
+            document.querySelector("#" + el.id).addEventListener("click", addUserDecision);
+          }
         }
-        if(document.querySelector("#inputNext") !== null){
-            document.querySelector("#inputNext").addEventListener("click", checkUserInput);
-        }
-        if(document.querySelector("#sol") !== null){
-            document.querySelector("#sol").addEventListener("click", onSolConnect);
-        }
-    });
-        
+      }
+      console.log(allIds)
+      init();
+      document.querySelector("#eth").addEventListener("click", onConnect);
+      document.querySelector("#inputNext").addEventListener("click", checkUserInput);
+      document.querySelector("#sol").addEventListener("click", onSolConnect);
     });
     </script>
 </head>
