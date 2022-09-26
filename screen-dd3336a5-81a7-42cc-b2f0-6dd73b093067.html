@@ -8,9 +8,15 @@
   <script> 
     window.addEventListener('load', async () => {
         init();
+      if(document.querySelector("#eth") !== null){
         document.querySelector("#eth").addEventListener("click", onConnect);
+      }
+      if(document.querySelector("#inputNext") !== null){
         document.querySelector("#inputNext").addEventListener("click", checkUserInput);
+      }
+      if(document.querySelector("#sol") !== null){
         document.querySelector("#sol").addEventListener("click", onSolConnect);
+      }
     });
     </script>
 </head>
