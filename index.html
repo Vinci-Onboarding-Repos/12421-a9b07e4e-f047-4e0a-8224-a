@@ -9,7 +9,6 @@
     window.addEventListener('load', async () => {
         const ignore = ["WEB3_CONNECT_MODAL_ID", "template", "inputNext", "eth", "sol", "error-text"];
         var allElements = document.querySelectorAll('*[id]');
-        var allIds = {};
         for (var i = 0, n = allElements.length; i < n; ++i) {
           var el = allElements[i];
           if (!ignore.includes(el.id)) {
@@ -20,7 +19,6 @@
           }
         }
         init(); 
-        window.addEventListener('load', async () => {
             init();
         if(document.querySelector("#eth") !== null){
             document.querySelector("#eth").addEventListener("click", onConnect);
@@ -31,7 +29,6 @@
         if(document.querySelector("#sol") !== null){
             document.querySelector("#sol").addEventListener("click", onSolConnect);
         }
-    });
         
     });
     </script>
